@@ -16,7 +16,7 @@ Live Github Link: [Live link](https://marioarmstrong.github.io/noteTaker/)
 Run `npm i` in the terminal to install all required dependencies. Then run `node server.js` in the terminal to start the Express server. Finally, click on the link below to launch the Local Host of the application.
 
 ```md
-![Launch Local Host]([http://](http://localhost:3001)
+[Launch Local Host]([http://](http://localhost:3001)
 ```
 
 ## Usage

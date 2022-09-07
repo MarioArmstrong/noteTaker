@@ -1,5 +1,3 @@
-const { response } = require("express");
-
 let noteTitle;
 let noteText;
 let saveNoteBtn;
@@ -41,9 +39,12 @@ const saveNote = (note) =>
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(note),
+    body: JSON.stringify(note),//must be turned into a string to use it
   })
-  .then((response) => response.json())
+  .then((response) => {
+    console.log(response);
+    return response.json();//turning into something we can use aka json
+  })
   .then((data) => {
     alert(data);
     console.log(`Successful POST request: ${data}`);

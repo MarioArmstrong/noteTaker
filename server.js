@@ -20,7 +20,6 @@ app.get("/", (req, res) => {
 
 //GET api/notes page
 app.get("/notes", (req, res) => {
-  // console.log(__filename, __dirname)
   res.sendFile(path.join(__dirname, "/public/notes.html"));
 
   console.info(`${req.method} was received to view notes.html`);
@@ -28,7 +27,6 @@ app.get("/notes", (req, res) => {
 
   //
 app.get("/api/notes", (req, res) => {
-  // console.log(res);
   console.info(`${req.method} request received for api/notes`);
 
   return res.json(db);
@@ -50,12 +48,9 @@ app.post("/api/notes", (req, res) => {
       text,
       note_id: randomUUID(),
     }
-    // console.log(db);
-    db.push(newNote);
-    // console.log(db);
+    db.push(newNote);//take the database.json file array and push the newNote
 
-    fs.writeFile('./db/db.json', JSON.stringify(db), (err) =>{
-      console.log("HIT ME BABY ONE MORE TIME")
+    fs.writeFile('./db/db.json', JSON.stringify(db), (err) =>{//do not use writeFileSync because it ignores callback
     err ? console.error(err) : console.log('writeFileSync was successful')});
   
 
@@ -64,7 +59,7 @@ app.post("/api/notes", (req, res) => {
     body: newNote,
   };
   console.log(response);
-  res.status(201).json(response);
+  res.status(201).json(JSON.stringify(response));
   
   }else{
     res.status(500).json('Error in adding new note');

@@ -50,21 +50,14 @@ app.post("/api/notes", (req, res) => {
       text,
       note_id: randomUUID(),
     }
+    // console.log(db);
+    db.push(newNote);
+    // console.log(db);
 
-  //   fs.readFile("./db/db.json")//trying to read data to append to it later - the idea is that this will format the db better
-  //   .then((response) => {
-  //   console.log(response);
-  // return response;})
-  //   .then((data)=>{
-  //     let stringData = JSON.stringify(data);//creating variable so the db data is in string format for easier joining
-  //   })
-  //   .catch((error) =>
-  //   console.err(err));
-
-    // const noteString = JSON.stringify(newNote);//stringified user input
-
-    fs.appendFileSync('./db/db.json', JSON.stringify(newNote, null, 2), "utf-8", (err) =>
-    err ? console.error(err) : console.log(`New note for ${newNote.title} has been added to JSON file`));
+    fs.writeFile('./db/db.json', JSON.stringify(db), (err) =>{
+      console.log("HIT ME BABY ONE MORE TIME")
+    err ? console.error(err) : console.log('writeFileSync was successful')});
+  
 
     const response = {
     status: 'sucess',

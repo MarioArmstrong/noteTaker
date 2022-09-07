@@ -23,21 +23,14 @@ If you would like to run this application without installing anything, click on 
 
 
 ## Usage
-```md
+
 ![noteTaker Homepage](./public/assets/images/noteTaker%20homepage.jpg)
-```
 
-```md
 ![noteTaker Save Notes Page](./public/assets/images/ntoeTaker%20save%20notes%20.jpg)
-```
 
-```md
 ![noteTaker Successfully Saved Note](./public/assets/images/noteTaker%20successfully%20saved%20note.jpg)
-```
 
-```md
 ![noteTaker Saved Note on page](./public/assets/images/noteTaker%20persitent%20data.jpg)
-```
 
 ## Credits
 The main person who helped me throughout this project is Andru Sanchez. He walked me through any issues I had and gave me a better perspective on Express.js.

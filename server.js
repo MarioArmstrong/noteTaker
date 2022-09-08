@@ -36,6 +36,7 @@ app.get("/api/notes", (req, res) => {
 app.get("*", (req, res) =>
   res.sendFile(path.join(__dirname, "/public/404.html"))
 );
+
 //POST to notes
 app.post("/api/notes", (req, res) => {
   console.info(`${req.method} request received to add to notes`);
@@ -52,7 +53,6 @@ app.post("/api/notes", (req, res) => {
 
     fs.writeFile('./db/db.json', JSON.stringify(db), (err) =>{//do not use writeFileSync because it ignores callback
     err ? console.error(err) : console.log('writeFileSync was successful')});
-  
 
     const response = {
     status: 'sucess',
@@ -64,9 +64,31 @@ app.post("/api/notes", (req, res) => {
   }else{
     res.status(500).json('Error in adding new note');
   }  
-}
+});
 
-);
+//DELETE notes
+app.delete("/api/notes/:notes_id", (req, res) => {
+  console.info(`${req.method} was recieved`);
+
+  // const {id} = req.params;
+  const paramsId= req.params.notes_id; //this is the same as above but not deconstructed
+  
+  const index = db.findIndex(db => {
+    console.log(paramsId);
+    return paramsId;
+  })
+
+  console.log(`this is the index: ${index}`);
+
+  if(index === paramsId) {
+    db.splice(paramsId);
+    console.log(db);
+    fs.writeFile('./db/db.json', JSON.stringify(db), (err) =>{//do not use writeFileSync because it ignores callback
+      err ? console.error(err) : console.log('writeFileSync was successful')});
+    } else {
+    res.status(400).json('the id you entered does not exist');
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`Express server listening, http://localhost:${PORT}`);
